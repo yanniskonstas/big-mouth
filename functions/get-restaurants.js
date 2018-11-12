@@ -17,12 +17,10 @@ function* getRestaurants(count){
     return res.Items;
 }
 
-module.exports.handler = co.wrap(function* (event, context, callback){
+module.exports.handler = co.wrap(function* (event, context){
     let restaurants = yield getRestaurants(defaultResults);
-    let response = {
+    return {
         statusCode : 200,
         body: JSON.stringify(restaurants)
     }
-
-    callback(null, response);
 });  
